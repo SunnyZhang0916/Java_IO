@@ -6,6 +6,8 @@ import java.io.FilenameFilter;
 
 /**
  * 文件名过滤器
+ * https://www.youtube.com/watch?v=3Z9mrgIifl8
+ * https://www.youtube.com/watch?v=ign_Z6ECBwg
  */
 public class FileDemoOne {
     //private static final String FilePath = "src/filedemo";
@@ -19,7 +21,15 @@ public class FileDemoOne {
         fileChooser.showOpenDialog(null);   //显示出选择文件的对话框
 
         //列出当前目录下的所有文件/文件夹
-        File file = fileChooser.getSelectedFile(); //获得用户选择的文件夹，建议使用时判断file是否为Null.如果为Null,表示用户点了取消按钮
+        File file = fileChooser.getSelectedFile(); //获得用户选择的文件夹
+
+        // 建议使用时判断file是否为Null.如果为Null,表示用户点了取消按钮
+        if(null == file){
+            System.out.println("用户未选择任何文件，系统强制退出。");
+            System.exit(0);
+        }
+
+        System.out.println("文件/文件夹所占空间大小" + file.length() / 1024 + "KB");
 
         String[] fileNames = file.list(new DirFilter());
         for(int i = 0; i < fileNames.length; i++){
